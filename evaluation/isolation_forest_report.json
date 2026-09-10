@@ -1,0 +1,118 @@
+{
+  "experiment": "isolation_forest_anomaly_detection",
+  "model": "IsolationForest",
+  "state_dimension": 33,
+  "feature_names": [
+    "flow_count",
+    "unique_src_ips",
+    "unique_dst_ips",
+    "unique_dst_ports",
+    "total_bytes",
+    "total_packets",
+    "avg_duration",
+    "avg_packet_length",
+    "avg_ttl",
+    "ttl_variance",
+    "avg_tcp_window",
+    "tcp_window_variance",
+    "syn_count",
+    "ack_count",
+    "fin_count",
+    "rst_count",
+    "psh_count",
+    "urg_count",
+    "fragment_count",
+    "retransmission_count",
+    "avg_payload_size",
+    "payload_variance",
+    "max_payload_size",
+    "avg_iat",
+    "iat_variance",
+    "avg_src_iat",
+    "src_iat_variance",
+    "avg_bytes_per_packet",
+    "avg_packets_per_second",
+    "avg_bytes_per_second",
+    "avg_unique_dst_ports",
+    "avg_unique_dst_hosts",
+    "port_scan_count"
+  ],
+  "random_state": 42,
+  "n_estimators": 300,
+  "contamination": "auto",
+  "threshold_percentile": 95.0,
+  "threshold": -0.07844956964254379,
+  "training_policy": "fit_only_on_benign_states",
+  "chronological_split": 0.8,
+  "total_states": 56700,
+  "train_states": 45360,
+  "test_states": 11340,
+  "benign_fit_states": 32692,
+  "test_benign_states": 4854,
+  "test_attack_states": 6486,
+  "metrics": {
+    "precision": 0.27294685990338163,
+    "recall": 0.01742213999383287,
+    "f1": 0.0327536231884058,
+    "fpr": 0.06201071281417388,
+    "true_negative": 4553,
+    "false_positive": 301,
+    "false_negative": 6373,
+    "true_positive": 113,
+    "predicted_anomaly_count": 414,
+    "anomaly_rate": 0.03650793650793651,
+    "roc_auc": 0.32167032514390925,
+    "average_precision": 0.46139386937334237
+  },
+  "score_summary": {
+    "test_min": -0.17589432001113892,
+    "test_max": 0.08750496804714203,
+    "test_mean": -0.1437360793352127,
+    "test_median": -0.15269547700881958,
+    "benign_test_mean": -0.1351279318332672,
+    "attack_test_mean": -0.1501782387495041
+  },
+  "top_feature_magnitude_proxies": [
+    {
+      "feature": "iat_variance",
+      "standardized_magnitude": 58518.0234375
+    },
+    {
+      "feature": "avg_iat",
+      "standardized_magnitude": 24.16469383239746
+    },
+    {
+      "feature": "avg_packet_length",
+      "standardized_magnitude": 1.0470008850097656
+    },
+    {
+      "feature": "avg_bytes_per_packet",
+      "standardized_magnitude": 0.9950240254402161
+    },
+    {
+      "feature": "avg_packets_per_second",
+      "standardized_magnitude": 0.8427067995071411
+    },
+    {
+      "feature": "avg_bytes_per_second",
+      "standardized_magnitude": 0.7999537587165833
+    },
+    {
+      "feature": "avg_duration",
+      "standardized_magnitude": 0.7981553673744202
+    },
+    {
+      "feature": "avg_tcp_window",
+      "standardized_magnitude": 0.5733325481414795
+    },
+    {
+      "feature": "total_bytes",
+      "standardized_magnitude": 0.5131467580795288
+    },
+    {
+      "feature": "tcp_window_variance",
+      "standardized_magnitude": 0.4977567791938782
+    }
+  ],
+  "interpretation": "Isolation Forest is an unsupervised anomaly detector. It is trained only on benign states; attack labels are used only for post-training evaluation. Its anomaly score is not an attack probability."
+}

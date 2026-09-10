@@ -1,0 +1,501 @@
+{
+  "source": {
+    "forecast_file": "data\\processed\\zeek_world_model_forecast.npz",
+    "zeek_state_file": "data\\processed\\zeek_network_states.npz",
+    "training_file": "data\\processed\\training_states.npz",
+    "forecast_steps": 5,
+    "state_dimension": 33
+  },
+  "max_attack_probability": 0.5205253958702087,
+  "final_attack_probability": 0.5205252170562744,
+  "max_risk_score": 0.5636798739433289,
+  "overall_risk_level": "MEDIUM",
+  "timeline": [
+    {
+      "step": 1,
+      "attack_probability": 0.5205253881337218,
+      "infiltration_probability": 0.5205253881337218,
+      "risk_score": 0.5636798747487982,
+      "risk_level": "MEDIUM",
+      "mitre_stage": "Command & Control",
+      "stage_scores": {
+        "Reconnaissance": 0.12621393501758577,
+        "Initial Access": 0.2557662417413667,
+        "Lateral Movement": 0.42797396183013914,
+        "Command & Control": 0.7362978212091035,
+        "Exfiltration": 0.7157037016004324
+      },
+      "top_features": [
+        {
+          "feature": "avg_packets_per_second",
+          "index": 28,
+          "contribution": -1.1920928955078125e-07,
+          "current": 0.0,
+          "future": 0.8517732620239258,
+          "change": 0.8517732620239258
+        },
+        {
+          "feature": "total_bytes",
+          "index": 4,
+          "contribution": -1.1920928955078125e-07,
+          "current": 0.0,
+          "future": 1.4624671936035156,
+          "change": 1.4624671936035156
+        },
+        {
+          "feature": "iat_variance",
+          "index": 24,
+          "contribution": -1.1920928955078125e-07,
+          "current": 0.0,
+          "future": 0.010701945051550865,
+          "change": 0.010701945051550865
+        },
+        {
+          "feature": "total_packets",
+          "index": 5,
+          "contribution": -1.1920928955078125e-07,
+          "current": 0.0,
+          "future": 1.0551185607910156,
+          "change": 1.0551185607910156
+        },
+        {
+          "feature": "port_scan_count",
+          "index": 32,
+          "contribution": 0.0,
+          "current": 0.0,
+          "future": 0.12089455872774124,
+          "change": 0.12089455872774124
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "index": 29,
+          "contribution": 0.0,
+          "current": 0.0,
+          "future": 0.7865180969238281,
+          "change": 0.7865180969238281
+        },
+        {
+          "feature": "avg_bytes_per_packet",
+          "index": 27,
+          "contribution": 0.0,
+          "current": 0.0,
+          "future": 0.1281285285949707,
+          "change": 0.1281285285949707
+        },
+        {
+          "feature": "avg_unique_dst_ports",
+          "index": 30,
+          "contribution": 0.0,
+          "current": 1.0,
+          "future": 1.0880322456359863,
+          "change": 0.08803224563598633
+        },
+        {
+          "feature": "avg_unique_dst_hosts",
+          "index": 31,
+          "contribution": 0.0,
+          "current": 1.0,
+          "future": 1.1399147510528564,
+          "change": 0.13991475105285645
+        },
+        {
+          "feature": "avg_iat",
+          "index": 23,
+          "contribution": 0.0,
+          "current": 9.699999809265137,
+          "future": 9.662993431091309,
+          "change": -0.037006378173828125
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "attack_probability": 0.5205252393732174,
+      "infiltration_probability": 0.5205252393732174,
+      "risk_score": 0.5635993939206398,
+      "risk_level": "MEDIUM",
+      "mitre_stage": "Command & Control",
+      "stage_scores": {
+        "Reconnaissance": 0.03316143783749147,
+        "Initial Access": 0.2521345126093365,
+        "Lateral Movement": 0.3557889333321316,
+        "Command & Control": 0.7358960121103295,
+        "Exfiltration": 0.703176251838955
+      },
+      "top_features": [
+        {
+          "feature": "total_packets",
+          "index": 5,
+          "contribution": 2.384185791015625e-07,
+          "current": 1.0551185607910156,
+          "future": 1.9883308410644531,
+          "change": 0.9332122802734375
+        },
+        {
+          "feature": "unique_dst_ports",
+          "index": 3,
+          "contribution": 2.384185791015625e-07,
+          "current": 1.1613335609436035,
+          "future": 1.2629821300506592,
+          "change": 0.10164856910705566
+        },
+        {
+          "feature": "avg_duration",
+          "index": 6,
+          "contribution": 1.1920928955078125e-07,
+          "current": 4.725008010864258,
+          "future": 4.422096252441406,
+          "change": -0.30291175842285156
+        },
+        {
+          "feature": "port_scan_count",
+          "index": 32,
+          "contribution": 0.0,
+          "current": 0.12089455872774124,
+          "future": 0.11914423108100891,
+          "change": -0.0017503276467323303
+        },
+        {
+          "feature": "avg_unique_dst_hosts",
+          "index": 31,
+          "contribution": 0.0,
+          "current": 1.1399147510528564,
+          "future": 1.1735411882400513,
+          "change": 0.033626437187194824
+        },
+        {
+          "feature": "avg_bytes_per_packet",
+          "index": 27,
+          "contribution": 0.0,
+          "current": 0.1281285285949707,
+          "future": 0.2562551498413086,
+          "change": 0.1281266212463379
+        },
+        {
+          "feature": "avg_unique_dst_ports",
+          "index": 30,
+          "contribution": 0.0,
+          "current": 1.0880322456359863,
+          "future": 1.137298345565796,
+          "change": 0.04926609992980957
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "index": 29,
+          "contribution": 0.0,
+          "current": 0.7865180969238281,
+          "future": 1.5709247589111328,
+          "change": 0.7844066619873047
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "index": 28,
+          "contribution": 0.0,
+          "current": 0.8517732620239258,
+          "future": 1.703577995300293,
+          "change": 0.8518047332763672
+        },
+        {
+          "feature": "avg_iat",
+          "index": 23,
+          "contribution": 0.0,
+          "current": 9.662993431091309,
+          "future": 9.625988006591797,
+          "change": -0.03700542449951172
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "attack_probability": 0.5205253881337218,
+      "infiltration_probability": 0.5205253881337218,
+      "risk_score": 0.5565429476859344,
+      "risk_level": "MEDIUM",
+      "mitre_stage": "Command & Control",
+      "stage_scores": {
+        "Reconnaissance": 0.03591010961025597,
+        "Initial Access": 0.2506350119248964,
+        "Lateral Movement": 0.2669830406773257,
+        "Command & Control": 0.7006131858947843,
+        "Exfiltration": 0.41816803796709046
+      },
+      "top_features": [
+        {
+          "feature": "avg_duration",
+          "index": 6,
+          "contribution": -2.384185791015625e-07,
+          "current": 4.422096252441406,
+          "future": 4.214250087738037,
+          "change": -0.20784616470336914
+        },
+        {
+          "feature": "total_bytes",
+          "index": 4,
+          "contribution": 1.1920928955078125e-07,
+          "current": 2.871951103210449,
+          "future": 4.057870864868164,
+          "change": 1.1859197616577148
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "index": 28,
+          "contribution": 1.1920928955078125e-07,
+          "current": 1.703577995300293,
+          "future": 2.555224895477295,
+          "change": 0.851646900177002
+        },
+        {
+          "feature": "iat_variance",
+          "index": 24,
+          "contribution": 1.1920928955078125e-07,
+          "current": 0.007733780890703201,
+          "future": 0.013635504990816116,
+          "change": 0.005901724100112915
+        },
+        {
+          "feature": "port_scan_count",
+          "index": 32,
+          "contribution": 0.0,
+          "current": 0.11914423108100891,
+          "future": 0.09344223141670227,
+          "change": -0.02570199966430664
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "index": 29,
+          "contribution": 0.0,
+          "current": 1.5709247589111328,
+          "future": 2.333603858947754,
+          "change": 0.7626791000366211
+        },
+        {
+          "feature": "avg_bytes_per_packet",
+          "index": 27,
+          "contribution": 0.0,
+          "current": 0.2562551498413086,
+          "future": 0.3833498954772949,
+          "change": 0.12709474563598633
+        },
+        {
+          "feature": "avg_unique_dst_ports",
+          "index": 30,
+          "contribution": 0.0,
+          "current": 1.137298345565796,
+          "future": 1.1785515546798706,
+          "change": 0.04125320911407471
+        },
+        {
+          "feature": "avg_unique_dst_hosts",
+          "index": 31,
+          "contribution": 0.0,
+          "current": 1.1735411882400513,
+          "future": 1.1892768144607544,
+          "change": 0.015735626220703125
+        },
+        {
+          "feature": "avg_iat",
+          "index": 23,
+          "contribution": 0.0,
+          "current": 9.625988006591797,
+          "future": 9.588982582092285,
+          "change": -0.03700542449951172
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "attack_probability": 0.5205252393732174,
+      "infiltration_probability": 0.5205252393732174,
+      "risk_score": 0.5531678109439236,
+      "risk_level": "MEDIUM",
+      "mitre_stage": "Command & Control",
+      "stage_scores": {
+        "Reconnaissance": 0.03535173407874813,
+        "Initial Access": 0.2521272161277011,
+        "Lateral Movement": 0.23266468584683275,
+        "Command & Control": 0.6837380972267486,
+        "Exfiltration": 0.29343245563010883
+      },
+      "top_features": [
+        {
+          "feature": "avg_packets_per_second",
+          "index": 28,
+          "contribution": -1.1920928955078125e-07,
+          "current": 2.555224895477295,
+          "future": 3.398599624633789,
+          "change": 0.8433747291564941
+        },
+        {
+          "feature": "total_bytes",
+          "index": 4,
+          "contribution": -1.1920928955078125e-07,
+          "current": 4.057870864868164,
+          "future": 4.988992691040039,
+          "change": 0.931121826171875
+        },
+        {
+          "feature": "avg_duration",
+          "index": 6,
+          "contribution": 1.1920928955078125e-07,
+          "current": 4.214250087738037,
+          "future": 3.9905619621276855,
+          "change": -0.22368812561035156
+        },
+        {
+          "feature": "total_packets",
+          "index": 5,
+          "contribution": -1.1920928955078125e-07,
+          "current": 2.684926986694336,
+          "future": 3.0913007259368896,
+          "change": 0.4063737392425537
+        },
+        {
+          "feature": "port_scan_count",
+          "index": 32,
+          "contribution": 0.0,
+          "current": 0.09344223141670227,
+          "future": 0.03105715475976467,
+          "change": -0.06238507479429245
+        },
+        {
+          "feature": "avg_bytes_per_packet",
+          "index": 27,
+          "contribution": 0.0,
+          "current": 0.3833498954772949,
+          "future": 0.5104997158050537,
+          "change": 0.1271498203277588
+        },
+        {
+          "feature": "avg_unique_dst_hosts",
+          "index": 31,
+          "contribution": 0.0,
+          "current": 1.1892768144607544,
+          "future": 1.1697291135787964,
+          "change": -0.019547700881958008
+        },
+        {
+          "feature": "avg_unique_dst_ports",
+          "index": 30,
+          "contribution": 0.0,
+          "current": 1.1785515546798706,
+          "future": 1.1945184469223022,
+          "change": 0.01596689224243164
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "index": 29,
+          "contribution": 0.0,
+          "current": 2.333603858947754,
+          "future": 3.0586986541748047,
+          "change": 0.7250947952270508
+        },
+        {
+          "feature": "avg_iat",
+          "index": 23,
+          "contribution": 0.0,
+          "current": 9.588982582092285,
+          "future": 9.55197811126709,
+          "change": -0.03700447082519531
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "attack_probability": 0.5205252393732174,
+      "infiltration_probability": 0.5205252393732174,
+      "risk_score": 0.5513865659481946,
+      "risk_level": "MEDIUM",
+      "mitre_stage": "Command & Control",
+      "stage_scores": {
+        "Reconnaissance": 0.021217299460939962,
+        "Initial Access": 0.25241802553646264,
+        "Lateral Movement": 0.22563051371502824,
+        "Command & Control": 0.6748318722481031,
+        "Exfiltration": 0.21977228586811032
+      },
+      "top_features": [
+        {
+          "feature": "unique_dst_ports",
+          "index": 3,
+          "contribution": -2.384185791015625e-07,
+          "current": 1.3920531272888184,
+          "future": 1.3901973962783813,
+          "change": -0.0018557310104370117
+        },
+        {
+          "feature": "flow_count",
+          "index": 0,
+          "contribution": 1.1920928955078125e-07,
+          "current": 2.2370781898498535,
+          "future": 2.2687747478485107,
+          "change": 0.03169655799865723
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "index": 29,
+          "contribution": -1.1920928955078125e-07,
+          "current": 3.0586986541748047,
+          "future": 3.676028251647949,
+          "change": 0.6173295974731445
+        },
+        {
+          "feature": "total_packets",
+          "index": 5,
+          "contribution": 1.1920928955078125e-07,
+          "current": 3.0913007259368896,
+          "future": 3.302340269088745,
+          "change": 0.21103954315185547
+        },
+        {
+          "feature": "avg_duration",
+          "index": 6,
+          "contribution": 1.1920928955078125e-07,
+          "current": 3.9905619621276855,
+          "future": 3.7423133850097656,
+          "change": -0.24824857711791992
+        },
+        {
+          "feature": "port_scan_count",
+          "index": 32,
+          "contribution": 0.0,
+          "current": 0.03105715475976467,
+          "future": -0.06373753398656845,
+          "change": -0.09479469060897827
+        },
+        {
+          "feature": "avg_unique_dst_hosts",
+          "index": 31,
+          "contribution": 0.0,
+          "current": 1.1697291135787964,
+          "future": 1.1265113353729248,
+          "change": -0.04321777820587158
+        },
+        {
+          "feature": "avg_unique_dst_ports",
+          "index": 30,
+          "contribution": 0.0,
+          "current": 1.1945184469223022,
+          "future": 1.1974400281906128,
+          "change": 0.002921581268310547
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "index": 28,
+          "contribution": 0.0,
+          "current": 3.398599624633789,
+          "future": 4.216371536254883,
+          "change": 0.8177719116210938
+        },
+        {
+          "feature": "avg_iat",
+          "index": 23,
+          "contribution": 0.0,
+          "current": 9.55197811126709,
+          "future": 9.514976501464844,
+          "change": -0.037001609802246094
+        }
+      ]
+    }
+  ],
+  "interpretation": "Forecasted attack probabilities are outputs of the ARJUN risk engine and are not calibrated probabilities."
+}

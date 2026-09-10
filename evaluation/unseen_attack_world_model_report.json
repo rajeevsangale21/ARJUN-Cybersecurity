@@ -1,0 +1,159 @@
+{
+  "experiment": {
+    "name": "leave_one_attack_family_out",
+    "held_out_family": "Infilteration",
+    "sequence_length": 10,
+    "state_dimension": 33,
+    "graph_dimension": 6,
+    "seed": 42
+  },
+  "data": {
+    "total_sequences": 56690,
+    "leakage_safe_training_sequences": 47875,
+    "validation_sequences": 5319,
+    "held_out_target_sequences": 3456,
+    "strict_context_clean_sequences": 4,
+    "excluded_context_sequences": 3492,
+    "target_window_min": 37386,
+    "target_window_max": 48913
+  },
+  "model": {
+    "parameters": 54881,
+    "constructor": {
+      "state_dimension": 33,
+      "graph_input_dimension": 6,
+      "hidden_dimension": 64,
+      "lstm_layers": 1,
+      "residual_scale": 0.75
+    },
+    "best_epoch": 11,
+    "best_validation_loss": 17848.712722799064,
+    "formulation": "normalized_next_state_residual",
+    "checkpoint": "C:\\Users\\Rajeev\\Desktop\\ARJUN\\saved_models\\unseen_infilteration_world_model.pt",
+    "device": "cpu"
+  },
+  "all_held_out_targets": {
+    "count": 3456,
+    "world_model": {
+      "mse": 417532302446305.0,
+      "rmse": 20433607.181462236,
+      "mae": 2737619.305640397,
+      "normalized_mae": 0.8604201716675286,
+      "normalized_rmse": 6.42218140507591
+    },
+    "persistence": {
+      "mse": 482765604790871.6,
+      "rmse": 21971927.65305019,
+      "mae": 2610667.963488677,
+      "normalized_mae": 0.8205199943921297,
+      "normalized_rmse": 6.9056679006293
+    },
+    "improvement": {
+      "mae_percent": -4.862791589248024,
+      "rmse_percent": 7.00129954858286
+    },
+    "beats_persistence_mae": false
+  },
+  "strict_context_clean": {
+    "count": 4,
+    "world_model": {
+      "mse": 235602989047947.22,
+      "rmse": 15349364.450945428,
+      "mae": 1955432.696563486,
+      "normalized_mae": 0.5257399320373118,
+      "normalized_rmse": 4.126848158690376
+    },
+    "persistence": {
+      "mse": 242656826338849.22,
+      "rmse": 15577446.078829778,
+      "mae": 2537411.9914148296,
+      "normalized_mae": 0.6822115689594033,
+      "normalized_rmse": 4.1881704531133
+    },
+    "improvement": {
+      "mae_percent": 22.93594011616691,
+      "rmse_percent": 1.4641785741394449
+    }
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 1749.0249085773562,
+      "validation_loss": 17848.73032047452,
+      "seconds": 785.0170199871063
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1749.0082227633995,
+      "validation_loss": 17848.72390830576,
+      "seconds": 1549.742043018341
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1749.0003636407455,
+      "validation_loss": 17848.71880208689,
+      "seconds": 1606.9317960739136
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1748.9950492079906,
+      "validation_loss": 17848.716161479562,
+      "seconds": 1331.2338201999664
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1748.9922311608436,
+      "validation_loss": 17848.715076079872,
+      "seconds": 1303.9941000938416
+    },
+    {
+      "epoch": 6,
+      "train_loss": 1748.9907456805925,
+      "validation_loss": 17848.714240738344,
+      "seconds": 751.6082594394684
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1748.9892653615636,
+      "validation_loss": 17848.714196258785,
+      "seconds": 871.162876367569
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1748.9885669046419,
+      "validation_loss": 17848.71353093429,
+      "seconds": 641.8670854568481
+    },
+    {
+      "epoch": 9,
+      "train_loss": 1748.9877112589468,
+      "validation_loss": 17848.71383967056,
+      "seconds": 628.1949350833893
+    },
+    {
+      "epoch": 10,
+      "train_loss": 1748.98731491429,
+      "validation_loss": 17848.71359338535,
+      "seconds": 634.7163462638855
+    },
+    {
+      "epoch": 11,
+      "train_loss": 1748.986742202087,
+      "validation_loss": 17848.712722799064,
+      "seconds": 649.0255997180939
+    },
+    {
+      "epoch": 12,
+      "train_loss": 1748.9861831264595,
+      "validation_loss": 17848.713179575945,
+      "seconds": 655.1021087169647
+    }
+  ],
+  "verdict": {
+    "target_family_absent_from_training_targets": true,
+    "held_out_family_absent_from_training_history": true,
+    "sufficient_test_size": true,
+    "strict_subset_available": true,
+    "world_model_beats_persistence_on_all_held_out_targets": false
+  }
+}

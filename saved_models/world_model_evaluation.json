@@ -1,0 +1,20 @@
+{
+  "device": "cpu",
+  "checkpoint_epoch": 7,
+  "validation_samples": 998,
+  "world_model": {
+    "mse": 103305134256322.14,
+    "rmse": 10163913.33376678,
+    "mae": 1486841.791019514
+  },
+  "persistence_baseline": {
+    "mse": 150267016821470.44,
+    "rmse": 12258344.783104708,
+    "mae": 1624671.0832398315
+  },
+  "improvement": {
+    "mae_percent": 8.483519750069398,
+    "rmse_percent": 17.085760650366243
+  },
+  "world_model_beats_baseline": true
+}

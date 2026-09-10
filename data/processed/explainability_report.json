@@ -1,0 +1,574 @@
+{
+  "phase": "A.4",
+  "title": "ARJUN Explainability",
+  "current_attack_probability": 0.016776718199253082,
+  "future_attack_probability_t5": 0.15995490550994873,
+  "threshold": 0.5500000000000002,
+  "model_feature_importance": [
+    {
+      "rank": 1,
+      "feature": "avg_src_iat",
+      "importance": 0.13561326265335083,
+      "relative_importance": 0.13561326265335083
+    },
+    {
+      "rank": 2,
+      "feature": "unique_src_ips",
+      "importance": 0.10943523049354553,
+      "relative_importance": 0.10943523049354553
+    },
+    {
+      "rank": 3,
+      "feature": "unique_dst_ips",
+      "importance": 0.07708882540464401,
+      "relative_importance": 0.07708882540464401
+    },
+    {
+      "rank": 4,
+      "feature": "avg_unique_dst_ports",
+      "importance": 0.0748249888420105,
+      "relative_importance": 0.0748249888420105
+    },
+    {
+      "rank": 5,
+      "feature": "avg_iat",
+      "importance": 0.06342978030443192,
+      "relative_importance": 0.06342978030443192
+    },
+    {
+      "rank": 6,
+      "feature": "avg_duration",
+      "importance": 0.05707325041294098,
+      "relative_importance": 0.05707325041294098
+    },
+    {
+      "rank": 7,
+      "feature": "tcp_window_variance",
+      "importance": 0.05643428862094879,
+      "relative_importance": 0.05643428862094879
+    },
+    {
+      "rank": 8,
+      "feature": "avg_tcp_window",
+      "importance": 0.055829450488090515,
+      "relative_importance": 0.055829450488090515
+    },
+    {
+      "rank": 9,
+      "feature": "total_packets",
+      "importance": 0.04787667468190193,
+      "relative_importance": 0.04787667468190193
+    },
+    {
+      "rank": 10,
+      "feature": "src_iat_variance",
+      "importance": 0.043334849178791046,
+      "relative_importance": 0.043334849178791046
+    },
+    {
+      "rank": 11,
+      "feature": "avg_unique_dst_hosts",
+      "importance": 0.03983605280518532,
+      "relative_importance": 0.03983605280518532
+    },
+    {
+      "rank": 12,
+      "feature": "flow_count",
+      "importance": 0.03879868984222412,
+      "relative_importance": 0.03879868984222412
+    },
+    {
+      "rank": 13,
+      "feature": "avg_packets_per_second",
+      "importance": 0.037926457822322845,
+      "relative_importance": 0.037926457822322845
+    },
+    {
+      "rank": 14,
+      "feature": "iat_variance",
+      "importance": 0.03167906403541565,
+      "relative_importance": 0.03167906403541565
+    },
+    {
+      "rank": 15,
+      "feature": "unique_dst_ports",
+      "importance": 0.029634499922394753,
+      "relative_importance": 0.029634499922394753
+    },
+    {
+      "rank": 16,
+      "feature": "avg_bytes_per_second",
+      "importance": 0.02664385735988617,
+      "relative_importance": 0.02664385735988617
+    },
+    {
+      "rank": 17,
+      "feature": "port_scan_count",
+      "importance": 0.022398578003048897,
+      "relative_importance": 0.022398578003048897
+    },
+    {
+      "rank": 18,
+      "feature": "total_bytes",
+      "importance": 0.019310707226395607,
+      "relative_importance": 0.019310707226395607
+    },
+    {
+      "rank": 19,
+      "feature": "avg_packet_length",
+      "importance": 0.0191984660923481,
+      "relative_importance": 0.0191984660923481
+    },
+    {
+      "rank": 20,
+      "feature": "avg_bytes_per_packet",
+      "importance": 0.013633083552122116,
+      "relative_importance": 0.013633083552122116
+    },
+    {
+      "rank": 21,
+      "feature": "avg_ttl",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 22,
+      "feature": "ttl_variance",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 23,
+      "feature": "ack_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 24,
+      "feature": "fin_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 25,
+      "feature": "rst_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 26,
+      "feature": "max_payload_size",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 27,
+      "feature": "avg_payload_size",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 28,
+      "feature": "payload_variance",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 29,
+      "feature": "urg_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 30,
+      "feature": "fragment_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 31,
+      "feature": "psh_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 32,
+      "feature": "syn_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    },
+    {
+      "rank": 33,
+      "feature": "retransmission_count",
+      "importance": 0.0,
+      "relative_importance": 0.0
+    }
+  ],
+  "temporal_feature_influence": [
+    {
+      "rank": 1,
+      "feature": "total_bytes",
+      "mean_absolute_change": 1.1263937950134277,
+      "maximum_absolute_change": 1.4624671936035156,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 1.1263937950134277
+    },
+    {
+      "rank": 2,
+      "feature": "avg_packets_per_second",
+      "mean_absolute_change": 0.8432742953300476,
+      "maximum_absolute_change": 0.8518047332763672,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.8432742953300476
+    },
+    {
+      "rank": 3,
+      "feature": "avg_bytes_per_second",
+      "mean_absolute_change": 0.7352056503295898,
+      "maximum_absolute_change": 0.7865180969238281,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.7352056503295898
+    },
+    {
+      "rank": 4,
+      "feature": "total_packets",
+      "mean_absolute_change": 0.6604680418968201,
+      "maximum_absolute_change": 1.0551185607910156,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.6604680418968201
+    },
+    {
+      "rank": 5,
+      "feature": "tcp_window_variance",
+      "mean_absolute_change": 0.6200841665267944,
+      "maximum_absolute_change": 0.7164096832275391,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.6200841665267944
+    },
+    {
+      "rank": 6,
+      "feature": "avg_tcp_window",
+      "mean_absolute_change": 0.30467042326927185,
+      "maximum_absolute_change": 0.34691953659057617,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.30467042326927185
+    },
+    {
+      "rank": 7,
+      "feature": "src_iat_variance",
+      "mean_absolute_change": 0.266150563955307,
+      "maximum_absolute_change": 0.6129960417747498,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.266150563955307
+    },
+    {
+      "rank": 8,
+      "feature": "flow_count",
+      "mean_absolute_change": 0.25375494360923767,
+      "maximum_absolute_change": 0.6754801273345947,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.25375494360923767
+    },
+    {
+      "rank": 9,
+      "feature": "avg_duration",
+      "mean_absolute_change": 0.2515373229980469,
+      "maximum_absolute_change": 0.30291175842285156,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.2515373229980469
+    },
+    {
+      "rank": 10,
+      "feature": "avg_src_iat",
+      "mean_absolute_change": 0.21135100722312927,
+      "maximum_absolute_change": 0.44849681854248047,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.21135100722312927
+    },
+    {
+      "rank": 11,
+      "feature": "avg_bytes_per_packet",
+      "mean_absolute_change": 0.12722507119178772,
+      "maximum_absolute_change": 0.1281285285949707,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.12722507119178772
+    },
+    {
+      "rank": 12,
+      "feature": "avg_packet_length",
+      "mean_absolute_change": 0.11854252964258194,
+      "maximum_absolute_change": 0.1195063591003418,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.11854252964258194
+    },
+    {
+      "rank": 13,
+      "feature": "unique_dst_ports",
+      "mean_absolute_change": 0.07878176867961884,
+      "maximum_absolute_change": 0.16133356094360352,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.07878176867961884
+    },
+    {
+      "rank": 14,
+      "feature": "port_scan_count",
+      "mean_absolute_change": 0.06110532954335213,
+      "maximum_absolute_change": 0.12089455872774124,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.06110532954335213
+    },
+    {
+      "rank": 15,
+      "feature": "avg_unique_dst_hosts",
+      "mean_absolute_change": 0.050408460199832916,
+      "maximum_absolute_change": 0.13991475105285645,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.050408460199832916
+    },
+    {
+      "rank": 16,
+      "feature": "unique_dst_ips",
+      "mean_absolute_change": 0.04401726648211479,
+      "maximum_absolute_change": 0.12790226936340332,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.04401726648211479
+    },
+    {
+      "rank": 17,
+      "feature": "avg_unique_dst_ports",
+      "mean_absolute_change": 0.03948800638318062,
+      "maximum_absolute_change": 0.08803224563598633,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.03948800638318062
+    },
+    {
+      "rank": 18,
+      "feature": "avg_iat",
+      "mean_absolute_change": 0.037004660815000534,
+      "maximum_absolute_change": 0.037006378173828125,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.037004660815000534
+    },
+    {
+      "rank": 19,
+      "feature": "unique_src_ips",
+      "mean_absolute_change": 0.03211772441864014,
+      "maximum_absolute_change": 0.05301308631896973,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.03211772441864014
+    },
+    {
+      "rank": 20,
+      "feature": "rst_count",
+      "mean_absolute_change": 0.013496552594006062,
+      "maximum_absolute_change": 0.03200431913137436,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.013496552594006062
+    },
+    {
+      "rank": 21,
+      "feature": "fin_count",
+      "mean_absolute_change": 0.011470066383481026,
+      "maximum_absolute_change": 0.022351186722517014,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.011470066383481026
+    },
+    {
+      "rank": 22,
+      "feature": "ttl_variance",
+      "mean_absolute_change": 0.008714364841580391,
+      "maximum_absolute_change": 0.024528762325644493,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.008714364841580391
+    },
+    {
+      "rank": 23,
+      "feature": "iat_variance",
+      "mean_absolute_change": 0.0051858131773769855,
+      "maximum_absolute_change": 0.010701945051550865,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0051858131773769855
+    },
+    {
+      "rank": 24,
+      "feature": "avg_payload_size",
+      "mean_absolute_change": 0.0021526911295950413,
+      "maximum_absolute_change": 0.00548231415450573,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0021526911295950413
+    },
+    {
+      "rank": 25,
+      "feature": "avg_ttl",
+      "mean_absolute_change": 0.001972137950360775,
+      "maximum_absolute_change": 0.0056478166952729225,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.001972137950360775
+    },
+    {
+      "rank": 26,
+      "feature": "syn_count",
+      "mean_absolute_change": 0.0016906249802559614,
+      "maximum_absolute_change": 0.0027588396333158016,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0016906249802559614
+    },
+    {
+      "rank": 27,
+      "feature": "fragment_count",
+      "mean_absolute_change": 0.0014064125716686249,
+      "maximum_absolute_change": 0.003349353326484561,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0014064125716686249
+    },
+    {
+      "rank": 28,
+      "feature": "psh_count",
+      "mean_absolute_change": 0.001349003636278212,
+      "maximum_absolute_change": 0.0033480627462267876,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.001349003636278212
+    },
+    {
+      "rank": 29,
+      "feature": "max_payload_size",
+      "mean_absolute_change": 0.0012961928732693195,
+      "maximum_absolute_change": 0.003480676794424653,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0012961928732693195
+    },
+    {
+      "rank": 30,
+      "feature": "ack_count",
+      "mean_absolute_change": 0.0010490186978131533,
+      "maximum_absolute_change": 0.0023008871357887983,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0010490186978131533
+    },
+    {
+      "rank": 31,
+      "feature": "payload_variance",
+      "mean_absolute_change": 0.0008977717952802777,
+      "maximum_absolute_change": 0.002022935776039958,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0008977717952802777
+    },
+    {
+      "rank": 32,
+      "feature": "retransmission_count",
+      "mean_absolute_change": 0.000755281827878207,
+      "maximum_absolute_change": 0.0017633649986237288,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.000755281827878207
+    },
+    {
+      "rank": 33,
+      "feature": "urg_count",
+      "mean_absolute_change": 0.0006535587599501014,
+      "maximum_absolute_change": 0.0009123572381213307,
+      "temporal_consistency": 1.0,
+      "temporal_influence_score": 0.0006535587599501014
+    }
+  ],
+  "what_if_sensitivity": [
+    {
+      "feature": "total_bytes",
+      "original_value": 0.0,
+      "perturbation_percent": -25.0,
+      "counterfactual_value": -0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "total_bytes",
+      "original_value": 0.0,
+      "perturbation_percent": 25.0,
+      "counterfactual_value": 0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "avg_packets_per_second",
+      "original_value": 0.0,
+      "perturbation_percent": -25.0,
+      "counterfactual_value": -0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "avg_packets_per_second",
+      "original_value": 0.0,
+      "perturbation_percent": 25.0,
+      "counterfactual_value": 0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "avg_bytes_per_second",
+      "original_value": 0.0,
+      "perturbation_percent": -25.0,
+      "counterfactual_value": -0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "avg_bytes_per_second",
+      "original_value": 0.0,
+      "perturbation_percent": 25.0,
+      "counterfactual_value": 0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "total_packets",
+      "original_value": 0.0,
+      "perturbation_percent": -25.0,
+      "counterfactual_value": -0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "total_packets",
+      "original_value": 0.0,
+      "perturbation_percent": 25.0,
+      "counterfactual_value": 0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "tcp_window_variance",
+      "original_value": 0.0,
+      "perturbation_percent": -25.0,
+      "counterfactual_value": -0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    },
+    {
+      "feature": "tcp_window_variance",
+      "original_value": 0.0,
+      "perturbation_percent": 25.0,
+      "counterfactual_value": 0.25,
+      "baseline_future_attack_probability": 0.15995490550994873,
+      "counterfactual_future_attack_probability": 0.24853643774986267,
+      "probability_change": 0.08858153223991394
+    }
+  ],
+  "summary": "Current XGBoost attack score is 1.68%. The 5-step forecast reaches 16.00%. The strongest current-model feature signal is 'avg_src_iat', while the largest temporal state-change signal is 'total_bytes'. In the sensitivity test, changing 'total_bytes' by 25% increased the t+5 model score by 8.86%. These explanations indicate model sensitivity and temporal contribution; they should not be interpreted as causal proof.",
+  "method_notes": {
+    "xgboost": "Native tree feature importance.",
+    "temporal": "Feature-state-change and temporal consistency sensitivity over the 5-step forecast.",
+    "what_if": "Counterfactual sensitivity by perturbing one current feature and rerunning the World Model.",
+    "causality": "These are model sensitivity explanations, not causal claims.",
+    "shap": "Not used in this phase."
+  },
+  "production_checkpoint_modified": false
+}

@@ -1,0 +1,9 @@
+﻿.venv/
+venv/
+__pycache__/
+*.pyc
+data/raw/
+data/raw/**
+data/processed/graph_sequences.pkl
+data/processed/training_graphs.pkl
+*.log

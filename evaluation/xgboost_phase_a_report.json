@@ -1,0 +1,50 @@
+{
+  "experiment": "arjun_phase_a_xgboost",
+  "state_dimension": 33,
+  "state_count": 56700,
+  "family_classes": [
+    "Benign",
+    "Brute Force -Web",
+    "Brute Force -XSS",
+    "DDOS attack-HOIC",
+    "DDOS attack-LOIC-UDP",
+    "DDoS attacks-LOIC-HTTP",
+    "DoS attacks-GoldenEye",
+    "DoS attacks-Hulk",
+    "DoS attacks-SlowHTTPTest",
+    "DoS attacks-Slowloris",
+    "FTP-BruteForce",
+    "Infilteration",
+    "SQL Injection",
+    "SSH-Bruteforce"
+  ],
+  "split": {
+    "train": 39690,
+    "validation": 8505,
+    "test": 8505
+  },
+  "binary_test": {
+    "accuracy": 0.2657260435038213,
+    "precision": 0.5451127819548872,
+    "recall": 0.06886180148804813,
+    "f1": 0.12227687983134224,
+    "fpr": 0.16590493601462522,
+    "true_negatives": 1825,
+    "false_positives": 363,
+    "false_negatives": 5882,
+    "true_positives": 435
+  },
+  "family_test": {
+    "accuracy": 0.43256907701352143,
+    "macro_precision": 0.07670435380941458,
+    "macro_recall": 0.07252239821978931,
+    "macro_f1": 0.04979801491334821,
+    "weighted_f1": 0.5444170742709985
+  },
+  "artifacts": {
+    "binary": "saved_models\\xgboost_attack_classifier.pkl",
+    "family": "saved_models\\xgboost_attack_family_classifier.pkl",
+    "normalizer": "saved_models\\state_normalizer.pkl"
+  },
+  "world_model_modified": false
+}

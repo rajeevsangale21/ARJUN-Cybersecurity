@@ -1,0 +1,1050 @@
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import streamlit as st
+import torch
+
+import plotly.graph_objects as go
+
+
+# ============================================================
+# PROJECT PATH
+# ============================================================
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+
+# ============================================================
+# ARJUN IMPORTS
+# ============================================================
+
+from preprocessing.normalizer import (
+    NetworkStateNormalizer
+)
+
+from features.graph_builder import (
+    build_window_graphs
+)
+
+from world_model.state_encoder import (
+    NetworkStateEncoder
+)
+
+from world_model.hybrid_wrapper import (
+    HybridWorldModelWrapper
+)
+
+from forecasting.hybrid_k_step_forecaster import (
+    HybridKStepForecaster
+)
+
+from evaluation.xgboost_classifier import (
+    XGBoostAttackClassifier
+)
+
+from risk.unified_analysis import (
+    UnifiedAnalysisService
+)
+
+
+# ============================================================
+# PAGE CONFIG
+# ============================================================
+
+st.set_page_config(
+    page_title="ARJUN SOC",
+    page_icon="🛡️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
+# ============================================================
+# CUSTOM CSS
+# ============================================================
+
+st.markdown(
+    """
+    <style>
+
+    .main-title {
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 0px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+        opacity: 0.75;
+        margin-bottom: 25px;
+    }
+
+    .metric-card {
+        padding: 18px;
+        border-radius: 12px;
+        border: 1px solid rgba(128,128,128,0.25);
+        min-height: 120px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .stage-box {
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid rgba(128,128,128,0.25);
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# ============================================================
+# SESSION STATE
+# ============================================================
+
+if "analysis_result" not in st.session_state:
+    st.session_state.analysis_result = None
+
+if "raw_dataframe" not in st.session_state:
+    st.session_state.raw_dataframe = None
+
+
+# ============================================================
+# HEADER
+# ============================================================
+
+st.markdown(
+    '<div class="main-title">🛡️ ARJUN</div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    '<div class="subtitle">'
+    "Proactive Cyber Defence World Model"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+
+# ============================================================
+# SIDEBAR
+# ============================================================
+
+st.sidebar.title("ARJUN Controls")
+
+st.sidebar.markdown(
+    "### Model Configuration"
+)
+
+sequence_length = st.sidebar.slider(
+    "Sequence Length",
+    min_value=2,
+    max_value=20,
+    value=5
+)
+
+forecast_steps = st.sidebar.slider(
+    "Forecast Steps",
+    min_value=1,
+    max_value=30,
+    value=10
+)
+
+st.sidebar.markdown("---")
+
+st.sidebar.markdown(
+    "### Input"
+)
+
+uploaded_file = st.sidebar.file_uploader(
+    "Upload telemetry",
+    type=[
+        "csv",
+        "pcap",
+        "pcapng",
+        "log",
+        "txt"
+    ]
+)
+
+st.sidebar.markdown("---")
+
+st.sidebar.caption(
+    "ARJUN combines current-state attack "
+    "classification with future-state "
+    "World Model forecasting."
+)
+
+
+# ============================================================
+# MODEL PATHS
+# ============================================================
+
+WORLD_MODEL_PATH = (
+    PROJECT_ROOT
+    / "saved_models"
+    / "hybrid_world_model.pt"
+)
+
+XGBOOST_PATH = (
+    PROJECT_ROOT
+    / "saved_models"
+    / "xgboost_attack_classifier.pkl"
+)
+
+NORMALIZER_PATH = (
+    PROJECT_ROOT
+    / "saved_models"
+    / "state_normalizer.pkl"
+)
+
+
+# ============================================================
+# HELPER FUNCTIONS
+# ============================================================
+
+def load_input_file(uploaded_file):
+
+    suffix = Path(
+        uploaded_file.name
+    ).suffix.lower()
+
+    temp_dir = (
+        PROJECT_ROOT
+        / "data"
+        / "sample"
+    )
+
+    temp_dir.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    temp_path = (
+        temp_dir
+        / uploaded_file.name
+    )
+
+    with open(
+        temp_path,
+        "wb"
+    ) as file:
+
+        file.write(
+            uploaded_file.getbuffer()
+        )
+
+    return temp_path
+
+
+def process_input(path):
+
+    suffix = path.suffix.lower()
+
+    if suffix == ".csv":
+
+        from ingestion.csv_loader import (
+            load_csv
+        )
+
+        return load_csv(path)
+
+    if suffix in [".pcap", ".pcapng"]:
+
+        from ingestion.pcap_loader import (
+            load_pcap
+        )
+
+        return load_pcap(path)
+
+    if suffix == ".log":
+
+        from ingestion.log_loader import (
+            load_generic_log
+        )
+
+        return load_generic_log(path)
+
+    if suffix == ".txt":
+
+        from ingestion.log_loader import (
+            load_generic_log
+        )
+
+        return load_generic_log(path)
+
+    raise ValueError(
+        f"Unsupported file type: {suffix}"
+    )
+
+
+def run_arjun(
+    input_path,
+    steps,
+    sequence_length
+):
+
+    # --------------------------------------------------------
+    # Import pipeline here so the dashboard loads faster
+    # --------------------------------------------------------
+
+    from pipeline import run_pipeline
+
+    result = run_pipeline(
+        str(input_path),
+        sequence_length=sequence_length
+    )
+
+    states = result["states"]
+    window_ids = result["window_ids"]
+    df = result["data"]
+
+    if len(states) < sequence_length:
+
+        raise ValueError(
+            "Not enough network states for "
+            "the selected sequence length."
+        )
+
+    # --------------------------------------------------------
+    # Normalize
+    # --------------------------------------------------------
+
+    normalizer = (
+        NetworkStateNormalizer()
+    )
+
+    normalizer.load(
+        NORMALIZER_PATH
+    )
+
+    normalized_states = (
+        normalizer.transform(
+            states
+        )
+    )
+
+    # --------------------------------------------------------
+    # Graphs
+    # --------------------------------------------------------
+
+    graphs = build_window_graphs(
+        df
+    )
+
+    # --------------------------------------------------------
+    # Device
+    # --------------------------------------------------------
+
+    device = (
+        "cuda"
+        if torch.cuda.is_available()
+        else "cpu"
+    )
+
+    # --------------------------------------------------------
+    # XGBoost
+    # --------------------------------------------------------
+
+    classifier = (
+        XGBoostAttackClassifier.load(
+            XGBOOST_PATH
+        )
+    )
+
+    current_state = (
+        normalized_states[-1]
+    )
+
+    current_probability = float(
+        classifier.predict_proba(
+            current_state.reshape(
+                1,
+                -1
+            )
+        )[0, 1]
+    )
+
+    # --------------------------------------------------------
+    # World Model
+    # --------------------------------------------------------
+
+    world_model = (
+        HybridWorldModelWrapper.load(
+            WORLD_MODEL_PATH,
+            device=device
+        )
+    )
+
+    state_sequence = (
+        normalized_states[
+            -sequence_length:
+        ]
+    )
+
+    graph_ids = window_ids[
+        -sequence_length:
+    ]
+
+    graph_sequence = []
+
+    for window_id in graph_ids:
+
+        window_id = int(
+            window_id
+        )
+
+        if window_id not in graphs:
+
+            raise ValueError(
+                f"Graph not found for "
+                f"window {window_id}"
+            )
+
+        graph = graphs[
+            window_id
+        ]
+
+        graph_sequence.append(
+            {
+                "node_features": torch.tensor(
+                    graph["node_features"],
+                    dtype=torch.float32,
+                    device=device
+                ),
+
+                "adjacency": torch.tensor(
+                    graph["adjacency"],
+                    dtype=torch.float32,
+                    device=device
+                )
+            }
+        )
+
+    # --------------------------------------------------------
+    # Forecast
+    # --------------------------------------------------------
+
+    forecaster = (
+        HybridKStepForecaster(
+            model=world_model,
+            device=device
+        )
+    )
+
+    future_states = (
+        forecaster.forecast(
+            state_sequence,
+            graph_sequence,
+            steps=steps
+        )
+    )
+
+    # --------------------------------------------------------
+    # Unified analysis
+    # --------------------------------------------------------
+
+    encoder = (
+        NetworkStateEncoder()
+    )
+
+    analysis_service = (
+        UnifiedAnalysisService(
+            encoder.feature_names
+        )
+    )
+
+    analysis = (
+        analysis_service.analyze(
+            current_state=current_state,
+            future_states=future_states,
+            current_attack_probability=(
+                current_probability
+            )
+        )
+    )
+
+    return {
+        "states": states,
+        "normalized_states":
+            normalized_states,
+        "window_ids":
+            window_ids,
+        "data":
+            df,
+        "future_states":
+            future_states,
+        "current_probability":
+            current_probability,
+        "analysis":
+            analysis,
+        "feature_names":
+            encoder.feature_names
+    }
+
+
+def risk_number(level):
+
+    levels = {
+        "LOW": 1,
+        "MEDIUM": 2,
+        "HIGH": 3,
+        "CRITICAL": 4
+    }
+
+    return levels.get(
+        level,
+        0
+    )
+
+
+# ============================================================
+# RUN ANALYSIS
+# ============================================================
+
+if uploaded_file:
+
+    st.sidebar.success(
+        f"Loaded: {uploaded_file.name}"
+    )
+
+    run_button = st.sidebar.button(
+        "🚀 Analyze Network",
+        use_container_width=True
+    )
+
+    if run_button:
+
+        input_path = None
+
+        try:
+
+            with st.spinner(
+                "ARJUN is analyzing the network..."
+            ):
+
+                input_path = (
+                    load_input_file(
+                        uploaded_file
+                    )
+                )
+
+                result = run_arjun(
+                    input_path,
+                    forecast_steps,
+                    sequence_length
+                )
+
+                st.session_state.analysis_result = (
+                    result
+                )
+
+                st.session_state.raw_dataframe = (
+                    result["data"]
+                )
+
+            st.success(
+                "Analysis completed successfully."
+            )
+
+        except Exception as error:
+
+            st.error(
+                f"Analysis failed: {error}"
+            )
+
+            st.exception(error)
+
+
+# ============================================================
+# EMPTY STATE
+# ============================================================
+
+if st.session_state.analysis_result is None:
+
+    st.info(
+        "Upload a CSV, PCAP, PCAPNG, or log file "
+        "from the sidebar and click **Analyze Network**."
+    )
+
+    st.markdown(
+        """
+        ### ARJUN capabilities
+
+        **Current-state intelligence**
+        - XGBoost attack classification
+        - Current attack probability
+
+        **World Model**
+        - Network state representation
+        - Graph encoding
+        - LSTM temporal transition modeling
+        - Recursive K-step forecasting
+
+        **Security intelligence**
+        - Future attack-risk timeline
+        - MITRE ATT&CK stage estimation
+        - Feature contributions
+        - What-if analysis
+        """
+    )
+
+    st.stop()
+
+
+# ============================================================
+# GET RESULT
+# ============================================================
+
+result = (
+    st.session_state.analysis_result
+)
+
+analysis = result[
+    "analysis"
+]
+
+summary = analysis[
+    "summary"
+]
+
+timeline = analysis[
+    "timeline"
+]
+
+contributions = analysis[
+    "contributions"
+]
+
+future_states = result[
+    "future_states"
+]
+
+feature_names = result[
+    "feature_names"
+]
+
+current_probability = (
+    result["current_probability"]
+)
+
+
+# ============================================================
+# TOP METRICS
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">'
+    "Current Security Posture"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+
+    st.metric(
+        "Current Attack Probability",
+        f"{current_probability * 100:.1f}%"
+    )
+
+with col2:
+
+    st.metric(
+        "Maximum Forecast Risk",
+        f"{summary['maximum_forecast_risk'] * 100:.1f}%"
+    )
+
+with col3:
+
+    st.metric(
+        "Risk Level",
+        summary["maximum_risk_level"]
+    )
+
+with col4:
+
+    step = summary[
+        "highest_risk_step"
+    ]
+
+    st.metric(
+        "Highest Risk",
+        f"t+{step}"
+        if step is not None
+        else "N/A"
+    )
+
+
+# ============================================================
+# RISK TIMELINE
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">'
+    "🔮 Future Attack-Risk Forecast"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+if timeline:
+
+    steps = [
+        item["step"]
+        for item in timeline
+    ]
+
+    risks = [
+        item["risk_score"]
+        for item in timeline
+    ]
+
+    attack_probs = [
+        item["current_attack_probability"]
+        for item in timeline
+    ]
+
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Scatter(
+            x=steps,
+            y=risks,
+            mode="lines+markers",
+            name="Forecast Risk"
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=steps,
+            y=attack_probs,
+            mode="lines+markers",
+            name="Current Attack Probability"
+        )
+    )
+
+    fig.update_layout(
+        xaxis_title="Future Step",
+        yaxis_title="Risk Score",
+        yaxis=dict(
+            range=[0, 1]
+        ),
+        height=400,
+        hovermode="x unified"
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+
+# ============================================================
+# MITRE PROGRESSION
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">'
+    "🎯 Predicted MITRE ATT&CK Progression"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+mitre_data = pd.DataFrame(
+    [
+        {
+            "Step":
+                item["step"],
+
+            "MITRE Stage":
+                item["mitre_stage"],
+
+            "Confidence":
+                item["mitre_confidence"],
+
+            "Risk":
+                item["risk_score"],
+
+            "Risk Level":
+                item["risk_level"]
+        }
+
+        for item in timeline
+    ]
+)
+
+st.dataframe(
+    mitre_data,
+    use_container_width=True,
+    hide_index=True
+)
+
+
+# ============================================================
+# HIGHEST RISK STAGE
+# ============================================================
+
+highest_stage = summary[
+    "highest_risk_mitre_stage"
+]
+
+st.info(
+    f"Highest forecast stage: **{highest_stage}**"
+)
+
+
+# ============================================================
+# FEATURE CONTRIBUTIONS
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">'
+    "🔍 Top Contributing Features"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+if contributions:
+
+    selected_step = st.selectbox(
+        "Select forecast step",
+        options=[
+            item["step"]
+            for item in contributions
+        ]
+    )
+
+    selected = next(
+        item
+        for item in contributions
+        if item["step"] == selected_step
+    )
+
+    feature_df = pd.DataFrame(
+        selected["features"]
+    )
+
+    feature_df = feature_df.rename(
+        columns={
+            "feature":
+                "Feature",
+
+            "contribution":
+                "Contribution"
+        }
+    )
+
+    st.bar_chart(
+        feature_df.set_index(
+            "Feature"
+        )
+    )
+
+
+# ============================================================
+# WHAT-IF ANALYSIS
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">'
+    "🧪 What-If Simulation"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+st.write(
+    "Modify a network-state feature and "
+    "observe its estimated effect on the "
+    "current state."
+)
+
+selected_feature = st.selectbox(
+    "Feature",
+    options=feature_names
+)
+
+feature_index = (
+    feature_names.index(
+        selected_feature
+    )
+)
+
+current_value = float(
+    result[
+        "normalized_states"
+    ][-1][feature_index]
+)
+
+change_percent = st.slider(
+    "Change (%)",
+    min_value=-90,
+    max_value=200,
+    value=0
+)
+
+simulated_state = (
+    result[
+        "normalized_states"
+    ][-1].copy()
+)
+
+simulated_state[
+    feature_index
+] = (
+    current_value
+    * (
+        1
+        + change_percent / 100
+    )
+)
+
+original_future_risk = (
+    summary[
+        "maximum_forecast_risk"
+    ]
+)
+
+# Simple directional estimate for UI.
+# A full counterfactual forecast will be
+# added in the next explainability iteration.
+original_abs = abs(
+    current_value
+)
+
+simulated_abs = abs(
+    simulated_state[
+        feature_index
+    ]
+)
+
+if original_abs > 0:
+
+    ratio = (
+        simulated_abs
+        / original_abs
+    )
+
+else:
+
+    ratio = 1.0
+
+simulated_risk = float(
+    np.clip(
+        original_future_risk
+        * (
+            0.5
+            + 0.5 * ratio
+        ),
+        0,
+        1
+    )
+)
+
+st.metric(
+    "Estimated Forecast Risk",
+    f"{simulated_risk * 100:.1f}%",
+    delta=(
+        f"{(simulated_risk - original_future_risk) * 100:.1f}%"
+    )
+)
+
+
+# ============================================================
+# RAW TELEMETRY
+# ============================================================
+
+st.markdown(
+    '<div class="section-title">'
+    "📋 Telemetry Evidence"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+df = (
+    st.session_state.raw_dataframe
+)
+
+st.write(
+    f"Records: {len(df)}"
+)
+
+st.dataframe(
+    df.head(500),
+    use_container_width=True,
+    hide_index=True
+)
+
+
+# ============================================================
+# MODEL INFORMATION
+# ============================================================
+
+with st.expander(
+    "Model Information"
+):
+
+    st.write(
+        f"World Model: "
+        f"`{WORLD_MODEL_PATH.name}`"
+    )
+
+    st.write(
+        f"Attack Classifier: "
+        f"`{XGBOOST_PATH.name}`"
+    )
+
+    st.write(
+        f"Normalizer: "
+        f"`{NORMALIZER_PATH.name}`"
+    )
+
+    st.write(
+        f"State dimension: "
+        f"{len(feature_names)}"
+    )
+
+    st.write(
+        f"Sequence length: "
+        f"{sequence_length}"
+    )
+
+    st.write(
+        f"Forecast steps: "
+        f"{forecast_steps}"
+    )
+
+    st.write(
+        f"Execution device: "
+        f"{'CUDA' if torch.cuda.is_available() else 'CPU'}"
+    )
+
+    st.caption(
+        "Forecast risk is a model-derived risk score, "
+        "not a calibrated probability."
+    )
+
+
+# ============================================================
+# FOOTER
+# ============================================================
+
+st.markdown("---")
+
+st.caption(
+    "ARJUN — Proactive Cyber Defence World Model"
+)

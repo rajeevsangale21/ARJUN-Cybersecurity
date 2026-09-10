@@ -1,0 +1,264 @@
+{
+  "pipeline": "ARJUN_PHASE_A2",
+  "classifier": {
+    "model": "improved_xgboost",
+    "threshold": 0.5500000000000002,
+    "current_attack_probability": 0.016776718199253082,
+    "current_attack_decision": false,
+    "current_attack_family": "Benign",
+    "family_confidence": 0.9997521042823792
+  },
+  "world_model": {
+    "type": "Temporal GNN + LSTM",
+    "transition": "P(S_t+1 | S_t, G_t)",
+    "context_length": 10,
+    "forecast_steps": 5
+  },
+  "future_attack_probabilities": [
+    0.016667556017637253,
+    0.016667556017637253,
+    0.1557256430387497,
+    0.1553247720003128,
+    0.15995490550994873
+  ],
+  "future_attack_families": [
+    {
+      "family": "Benign",
+      "confidence": 0.9997486472129822
+    },
+    {
+      "family": "Benign",
+      "confidence": 0.9997363686561584
+    },
+    {
+      "family": "Benign",
+      "confidence": 0.9991140961647034
+    },
+    {
+      "family": "Benign",
+      "confidence": 0.9991406202316284
+    },
+    {
+      "family": "Benign",
+      "confidence": 0.9991850256919861
+    }
+  ],
+  "timeline": [
+    {
+      "step": 1,
+      "current_attack_probability": 0.016776718199253082,
+      "future_attack_probability": 0.016667556017637253,
+      "forecast_risk": 0.2787429988384247,
+      "mitre_stage": "Lateral Movement",
+      "mitre_confidence": 0.99,
+      "risk_score": 0.30308228223770856,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "step": 2,
+      "current_attack_probability": 0.016776718199253082,
+      "future_attack_probability": 0.016667556017637253,
+      "forecast_risk": 0.3129662275314331,
+      "mitre_stage": "Command & Control",
+      "mitre_confidence": 0.7358960121103295,
+      "risk_score": 0.26423961470232743,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "step": 3,
+      "current_attack_probability": 0.016776718199253082,
+      "future_attack_probability": 0.1557256430387497,
+      "forecast_risk": 0.3226385712623596,
+      "mitre_stage": "Command & Control",
+      "mitre_confidence": 0.7006131858947843,
+      "risk_score": 0.2953328915203208,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "step": 4,
+      "current_attack_probability": 0.016776718199253082,
+      "future_attack_probability": 0.1553247720003128,
+      "forecast_risk": 0.31366556882858276,
+      "mitre_stage": "Command & Control",
+      "mitre_confidence": 0.6837380972267486,
+      "risk_score": 0.2887171051752825,
+      "risk_level": "MEDIUM"
+    },
+    {
+      "step": 5,
+      "current_attack_probability": 0.016776718199253082,
+      "future_attack_probability": 0.15995490550994873,
+      "forecast_risk": 0.326124906539917,
+      "mitre_stage": "Command & Control",
+      "mitre_confidence": 0.6748318722481031,
+      "risk_score": 0.2924541617559294,
+      "risk_level": "MEDIUM"
+    }
+  ],
+  "stage_timeline": [
+    {
+      "step": 1,
+      "stage": "Lateral Movement",
+      "confidence": 0.99
+    },
+    {
+      "step": 2,
+      "stage": "Command & Control",
+      "confidence": 0.7358960121103295
+    },
+    {
+      "step": 3,
+      "stage": "Command & Control",
+      "confidence": 0.7006131858947843
+    },
+    {
+      "step": 4,
+      "stage": "Command & Control",
+      "confidence": 0.6837380972267486
+    },
+    {
+      "step": 5,
+      "stage": "Command & Control",
+      "confidence": 0.6748318722481031
+    }
+  ],
+  "summary": {
+    "current_attack_probability": 0.016776718199253082,
+    "maximum_forecast_risk": 0.30308228223770856,
+    "maximum_future_attack_probability": 0.15995490550994873,
+    "maximum_risk_level": "MEDIUM",
+    "highest_risk_step": 1,
+    "highest_risk_mitre_stage": "Lateral Movement",
+    "highest_risk_mitre_confidence": 0.99,
+    "forecast_steps": 5,
+    "state_dimension": 33
+  },
+  "feature_contributions": [
+    {
+      "step": 1,
+      "features": [
+        {
+          "feature": "total_bytes",
+          "contribution": 1.4624671936035156
+        },
+        {
+          "feature": "total_packets",
+          "contribution": 1.0551185607910156
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "contribution": 0.8517732620239258
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "contribution": 0.7865180969238281
+        },
+        {
+          "feature": "tcp_window_variance",
+          "contribution": 0.7164096832275391
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "features": [
+        {
+          "feature": "total_bytes",
+          "contribution": 2.871951103210449
+        },
+        {
+          "feature": "total_packets",
+          "contribution": 1.9883308410644531
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "contribution": 1.703577995300293
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "contribution": 1.5709247589111328
+        },
+        {
+          "feature": "tcp_window_variance",
+          "contribution": 1.4203510284423828
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "features": [
+        {
+          "feature": "total_bytes",
+          "contribution": 4.057870864868164
+        },
+        {
+          "feature": "total_packets",
+          "contribution": 2.684926986694336
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "contribution": 2.555224895477295
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "contribution": 2.333603858947754
+        },
+        {
+          "feature": "tcp_window_variance",
+          "contribution": 2.077108383178711
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "features": [
+        {
+          "feature": "total_bytes",
+          "contribution": 4.988992691040039
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "contribution": 3.398599624633789
+        },
+        {
+          "feature": "total_packets",
+          "contribution": 3.0913007259368896
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "contribution": 3.0586986541748047
+        },
+        {
+          "feature": "tcp_window_variance",
+          "contribution": 2.641742706298828
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "features": [
+        {
+          "feature": "total_bytes",
+          "contribution": 5.631968975067139
+        },
+        {
+          "feature": "avg_packets_per_second",
+          "contribution": 4.216371536254883
+        },
+        {
+          "feature": "avg_bytes_per_second",
+          "contribution": 3.676028251647949
+        },
+        {
+          "feature": "total_packets",
+          "contribution": 3.302340269088745
+        },
+        {
+          "feature": "tcp_window_variance",
+          "contribution": 3.1004209518432617
+        }
+      ]
+    }
+  ],
+  "note": "Attack probabilities are model outputs and are not calibrated real-world probabilities."
+}

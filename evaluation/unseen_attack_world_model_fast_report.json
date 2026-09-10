@@ -1,0 +1,28 @@
+{
+  "experiment": "leave_one_attack_family_out_world_model",
+  "held_out_family": "Infilteration",
+  "sequence_length": 10,
+  "state_dimension": 33,
+  "all_target_sequences": 3456,
+  "strict_held_out_sequences": 3420,
+  "world_model": {
+    "mae": 2235870.75,
+    "rmse": 19003165.87773648,
+    "mse": 361120313376768.0,
+    "normalized_mae": 0.40333250164985657
+  },
+  "persistence": {
+    "mae": 2609489.0,
+    "rmse": 21928743.077330083,
+    "mse": 480869772951552.0,
+    "normalized_mae": 0.45467516779899597
+  },
+  "improvement_percent": {
+    "mae": 14.317678671954548,
+    "rmse": 13.34128996485012,
+    "normalized_mae": 11.292164117446832
+  },
+  "mean_prediction_current_distance": 1441492.125,
+  "production_checkpoint_modified": false,
+  "scaler": "exact production StateScaler: signed_log1p + median + IQR"
+}

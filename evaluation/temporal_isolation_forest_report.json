@@ -1,0 +1,181 @@
+{
+  "experiment": "temporal_isolation_forest",
+  "sequence_file": "C:\\Users\\Rajeev\\Desktop\\ARJUN\\data\\processed\\graph_sequences_states.npz",
+  "label_file": "C:\\Users\\Rajeev\\Desktop\\ARJUN\\data\\processed\\unseen_attack_state_labels.npz",
+  "sequence_count": 56690,
+  "sequence_length": 10,
+  "state_dimension": 33,
+  "temporal_feature_dimension": 132,
+  "split": {
+    "detector_fit_end": 36281,
+    "calibration_start": 36281,
+    "test_start": 45352,
+    "test_count": 11338
+  },
+  "training": {
+    "benign_only": true,
+    "benign_fit_count": 30892,
+    "trees": 500,
+    "max_samples": 4096,
+    "contamination": "auto",
+    "random_state": 42
+  },
+  "representation": {
+    "components": [
+      "latest",
+      "delta",
+      "mean10",
+      "std10"
+    ],
+    "features_per_component": 33
+  },
+  "preprocessing": {
+    "signed_log1p": true,
+    "robust_clip_scale": 8.0,
+    "robust_scaler": true
+  },
+  "configured_threshold_percentile": 99.0,
+  "configured_result": {
+    "threshold": 0.019482409840628538,
+    "precision": 0.21374045801526717,
+    "recall": 0.005653139511407228,
+    "f1": 0.011014948859166011,
+    "fpr": 0.016131558339859044,
+    "predicted_anomalies": 131,
+    "test_anomaly_rate": 0.011554065972834714,
+    "tp": 28,
+    "fp": 103,
+    "tn": 6282,
+    "fn": 4925
+  },
+  "roc_auc": 0.3487167787539599,
+  "average_precision": 0.33881361984450903,
+  "threshold_tradeoff": [
+    {
+      "threshold": -0.033404483861933454,
+      "precision": 0.19838308457711443,
+      "recall": 0.06440541086210377,
+      "f1": 0.0972412741960067,
+      "fpr": 0.2018794048551292,
+      "predicted_anomalies": 1608,
+      "test_anomaly_rate": 0.14182395484212384,
+      "tp": 319,
+      "fp": 1289,
+      "tn": 5096,
+      "fn": 4634,
+      "percentile": 90.0
+    },
+    {
+      "threshold": -0.0195306684139801,
+      "precision": 0.21883289124668434,
+      "recall": 0.03331314354936402,
+      "f1": 0.057823725249693356,
+      "fpr": 0.09224745497259201,
+      "predicted_anomalies": 754,
+      "test_anomaly_rate": 0.06650202857646852,
+      "tp": 165,
+      "fp": 589,
+      "tn": 5796,
+      "fn": 4788,
+      "percentile": 95.0
+    },
+    {
+      "threshold": -0.004674096950379292,
+      "precision": 0.25748502994011974,
+      "recall": 0.017363214213607914,
+      "f1": 0.032532627198789486,
+      "fpr": 0.03884103367267032,
+      "predicted_anomalies": 334,
+      "test_anomaly_rate": 0.02945845828188393,
+      "tp": 86,
+      "fp": 248,
+      "tn": 6137,
+      "fn": 4867,
+      "percentile": 97.5
+    },
+    {
+      "threshold": 0.019482409840628538,
+      "precision": 0.21374045801526717,
+      "recall": 0.005653139511407228,
+      "f1": 0.011014948859166011,
+      "fpr": 0.016131558339859044,
+      "predicted_anomalies": 131,
+      "test_anomaly_rate": 0.011554065972834714,
+      "tp": 28,
+      "fp": 103,
+      "tn": 6282,
+      "fn": 4925,
+      "percentile": 99.0
+    },
+    {
+      "threshold": 0.03452007581649379,
+      "precision": 0.15789473684210525,
+      "recall": 0.0030284675953967293,
+      "f1": 0.005942947702060222,
+      "fpr": 0.012529365700861394,
+      "predicted_anomalies": 95,
+      "test_anomaly_rate": 0.008378902804727466,
+      "tp": 15,
+      "fp": 80,
+      "tn": 6305,
+      "fn": 4938,
+      "percentile": 99.5
+    },
+    {
+      "threshold": 0.05922037371904943,
+      "precision": 0.14,
+      "recall": 0.001413284877851807,
+      "f1": 0.0027983210073955628,
+      "fpr": 0.006734534064212999,
+      "predicted_anomalies": 50,
+      "test_anomaly_rate": 0.0044099488445934025,
+      "tp": 7,
+      "fp": 43,
+      "tn": 6342,
+      "fn": 4946,
+      "percentile": 99.9
+    }
+  ],
+  "feature_magnitude_diagnostic": [
+    {
+      "feature": "latest__avg_iat",
+      "median_absolute_value": 127410368.0
+    },
+    {
+      "feature": "mean10__avg_iat",
+      "median_absolute_value": 123442608.0
+    },
+    {
+      "feature": "std10__avg_iat",
+      "median_absolute_value": 63804888.0
+    },
+    {
+      "feature": "delta__avg_iat",
+      "median_absolute_value": 47813876.0
+    },
+    {
+      "feature": "mean10__total_bytes",
+      "median_absolute_value": 436519.8125
+    },
+    {
+      "feature": "std10__total_bytes",
+      "median_absolute_value": 425580.1875
+    },
+    {
+      "feature": "mean10__port_scan_count",
+      "median_absolute_value": 240853.09375
+    },
+    {
+      "feature": "latest__total_bytes",
+      "median_absolute_value": 205864.0
+    },
+    {
+      "feature": "std10__port_scan_count",
+      "median_absolute_value": 202914.4375
+    },
+    {
+      "feature": "delta__total_bytes",
+      "median_absolute_value": 149393.5
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "experiment": "ARJUN unseen attack family generalization",
+  "status": "SPLIT_PREPARED",
+  "held_out_attack": "Infilteration",
+  "sequence_length": 10,
+  "window_seconds": 5,
+  "state_count": 56700,
+  "mapped_states": 56700,
+  "unmapped_states": 0,
+  "state_family_distribution": {
+    "Benign": 43768,
+    "Bot": 4087,
+    "Brute Force -Web": 295,
+    "Brute Force -XSS": 134,
+    "DDOS attack-HOIC": 264,
+    "DDOS attack-LOIC-UDP": 247,
+    "DDoS attacks-LOIC-HTTP": 860,
+    "DoS attacks-GoldenEye": 173,
+    "DoS attacks-Hulk": 36,
+    "DoS attacks-SlowHTTPTest": 552,
+    "DoS attacks-Slowloris": 502,
+    "FTP-BruteForce": 1166,
+    "Infilteration": 3456,
+    "SQL Injection": 70,
+    "SSH-Bruteforce": 1090
+  },
+  "sequence_count": 56690,
+  "train_sequences": 53194,
+  "held_out_test_sequences": 4,
+  "excluded_held_out_context_sequences": 3452,
+  "audit_by_source": {
+    "02-14-2018.csv": {
+      "raw_rows": 1048570,
+      "states": 6501,
+      "mapped_states": 6501,
+      "unmapped_states": 0,
+      "attack_states": 2256
+    },
+    "02-15-2018.csv": {
+      "raw_rows": 1048575,
+      "states": 6849,
+      "mapped_states": 6849,
+      "unmapped_states": 0,
+      "attack_states": 675
+    },
+    "02-16-2018.csv": {
+      "raw_rows": 1048574,
+      "states": 799,
+      "mapped_states": 799,
+      "unmapped_states": 0,
+      "attack_states": 588
+    },
+    "02-20-2018.csv": {
+      "raw_rows": 7948748,
+      "states": 8498,
+      "mapped_states": 8498,
+      "unmapped_states": 0,
+      "attack_states": 860
+    },
+    "02-21-2018.csv": {
+      "raw_rows": 1048575,
+      "states": 988,
+      "mapped_states": 988,
+      "unmapped_states": 0,
+      "attack_states": 511
+    },
+    "02-22-2018.csv": {
+      "raw_rows": 1048566,
+      "states": 6578,
+      "mapped_states": 6578,
+      "unmapped_states": 0,
+      "attack_states": 198
+    },
+    "02-23-2018.csv": {
+      "raw_rows": 1048575,
+      "states": 6669,
+      "mapped_states": 6669,
+      "unmapped_states": 0,
+      "attack_states": 301
+    },
+    "02-28-2018.csv": {
+      "raw_rows": 613071,
+      "states": 6766,
+      "mapped_states": 6766,
+      "unmapped_states": 0,
+      "attack_states": 1596
+    },
+    "03-01-2018.csv": {
+      "raw_rows": 331100,
+      "states": 6766,
+      "mapped_states": 6766,
+      "unmapped_states": 0,
+      "attack_states": 1860
+    },
+    "03-02-2018.csv": {
+      "raw_rows": 1048575,
+      "states": 6286,
+      "mapped_states": 6286,
+      "unmapped_states": 0,
+      "attack_states": 4087
+    }
+  },
+  "leakage_rule": "A training sequence is excluded if the held-out attack family appears in any of its 10 historical states or its target state.",
+  "next_step": "Train a fresh World Model only on train_sequences and evaluate next-state prediction on held_out_test_sequences."
+}

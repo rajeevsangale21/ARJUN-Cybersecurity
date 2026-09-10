@@ -1,0 +1,42 @@
+{
+  "dataset": {
+    "sequence_count": 56690,
+    "sequence_shape": [
+      56690,
+      10,
+      33
+    ],
+    "feature_count": 66
+  },
+  "split": {
+    "train_samples": 39683,
+    "validation_samples": 8503,
+    "test_samples": 8504,
+    "method": "chronological",
+    "train_ratio": 0.7,
+    "validation_ratio": 0.15,
+    "test_ratio": 0.15
+  },
+  "logistic_regression": {
+    "accuracy": 0.49529633113828786,
+    "precision": 0.7939042089985486,
+    "recall": 0.43295868291910716,
+    "f1": 0.5603359967219832,
+    "false_positive_rate": 0.3246456332876086,
+    "true_negatives": 1477,
+    "false_positives": 710,
+    "false_negatives": 3582,
+    "true_positives": 2735
+  },
+  "xgboost": {
+    "accuracy": 0.24106302916274694,
+    "precision": 0.39477726574500765,
+    "recall": 0.040683868925122685,
+    "f1": 0.07376578645235361,
+    "false_positive_rate": 0.18015546410608138,
+    "true_negatives": 1793,
+    "false_positives": 394,
+    "false_negatives": 6060,
+    "true_positives": 257
+  }
+}

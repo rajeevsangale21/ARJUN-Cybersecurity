@@ -1,0 +1,9 @@
+{
+  "status": "WAITING_FOR_INPUT",
+  "updated_at": 1788752781.6591694,
+  "input": "C:\\Users\\Rajeev\\Desktop\\ARJUN\\data\\raw\\logs\\synthetic_conn_14windows.log",
+  "interval_seconds": 2.0,
+  "window_seconds": 5,
+  "forecast_steps": 5,
+  "email_enabled": false
+}

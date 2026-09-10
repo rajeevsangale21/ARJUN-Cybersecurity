@@ -1,0 +1,314 @@
+{
+  "dataset": {
+    "state_sequence_shape": [
+      56690,
+      10,
+      33
+    ],
+    "target_shape": [
+      56690,
+      33
+    ],
+    "validation_sequences": 11338,
+    "sequence_length": 10,
+    "state_dimension": 33
+  },
+  "model": {
+    "checkpoint": "C:\\Users\\Rajeev\\Desktop\\ARJUN\\saved_models\\hybrid_world_model.pt",
+    "formulation": "next_state_normalized_residual",
+    "target_source": "targets[]",
+    "device": "cpu"
+  },
+  "overall": {
+    "world_model": {
+      "mse": 390014303207424.0,
+      "rmse": 19748779.790342085,
+      "mae": 2458769.25
+    },
+    "persistence": {
+      "mse": 489365688025088.0,
+      "rmse": 22121611.334283225,
+      "mae": 2769515.0
+    },
+    "improvement": {
+      "mae_percent": 11.220222674367172,
+      "rmse_percent": 10.726305186746576
+    }
+  },
+  "normalized": {
+    "world_model": {
+      "mae": 0.3429945409297943,
+      "rmse": 1.5785987377166748
+    },
+    "persistence": {
+      "mae": 0.3762732744216919,
+      "rmse": 1.635744333267212
+    },
+    "improvement": {
+      "mae_percent": 8.844299011946804,
+      "rmse_percent": 3.493553019767785
+    }
+  },
+  "dynamics": {
+    "mean_prediction_delta": 1632900.25,
+    "mean_actual_delta": 2769515.0,
+    "prediction_delta_std": 13293604.0,
+    "actual_delta_std": 22121612.0,
+    "nonzero_prediction_fraction": 0.9995857320782352,
+    "near_constant_features": 0
+  },
+  "attack_benign": {
+    "attack_count": 6484,
+    "benign_count": 4854,
+    "attack": {
+      "world_model_mae": 1995565.875,
+      "persistence_mae": 2264720.0,
+      "world_model_rmse": 15819264.256853415,
+      "persistence_rmse": 17823571.626421455,
+      "mae_gain_percent": 11.88465351125084
+    },
+    "benign": {
+      "world_model_mae": 3077518.75,
+      "persistence_mae": 3443823.0,
+      "world_model_rmse": 24014857.43134729,
+      "persistence_rmse": 26808671.3963219,
+      "mae_gain_percent": 10.636558557161619
+    }
+  },
+  "features": [
+    {
+      "feature": "flow_count",
+      "world_model_mae": 38.95829391479492,
+      "persistence_mae": 43.723670959472656,
+      "gain_percent": 10.898849387771554,
+      "prediction_std": 97.45622253417969
+    },
+    {
+      "feature": "unique_src_ips",
+      "world_model_mae": 0.021039573475718498,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.035654466599226
+    },
+    {
+      "feature": "unique_dst_ips",
+      "world_model_mae": 0.026451556012034416,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.04515096917748451
+    },
+    {
+      "feature": "unique_dst_ports",
+      "world_model_mae": 8.961701393127441,
+      "persistence_mae": 10.245546340942383,
+      "gain_percent": 12.53076122143481,
+      "prediction_std": 23.374731063842773
+    },
+    {
+      "feature": "total_bytes",
+      "world_model_mae": 554361.0625,
+      "persistence_mae": 828028.8125,
+      "gain_percent": 33.050510546092866,
+      "prediction_std": 792918.5625
+    },
+    {
+      "feature": "total_packets",
+      "world_model_mae": 832.4797973632812,
+      "persistence_mae": 1096.0325927734375,
+      "gain_percent": 24.046072821908833,
+      "prediction_std": 1381.671142578125
+    },
+    {
+      "feature": "avg_duration",
+      "world_model_mae": 5.6574811935424805,
+      "persistence_mae": 6.650102138519287,
+      "gain_percent": 14.926401494305827,
+      "prediction_std": 5.71956205368042
+    },
+    {
+      "feature": "avg_packet_length",
+      "world_model_mae": 18.278133392333984,
+      "persistence_mae": 20.86802864074707,
+      "gain_percent": 12.410828511879828,
+      "prediction_std": 20.769994735717773
+    },
+    {
+      "feature": "avg_ttl",
+      "world_model_mae": 0.001499272882938385,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0019368239445611835
+    },
+    {
+      "feature": "ttl_variance",
+      "world_model_mae": 0.007989645935595036,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.008939430117607117
+    },
+    {
+      "feature": "avg_tcp_window",
+      "world_model_mae": 1916.1968994140625,
+      "persistence_mae": 2169.917724609375,
+      "gain_percent": 11.69264725191306,
+      "prediction_std": 2112.605712890625
+    },
+    {
+      "feature": "tcp_window_variance",
+      "world_model_mae": 80330856.0,
+      "persistence_mae": 90232688.0,
+      "gain_percent": 10.973664000788716,
+      "prediction_std": 87569128.0
+    },
+    {
+      "feature": "syn_count",
+      "world_model_mae": 0.0007609929307363927,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0009559753816574812
+    },
+    {
+      "feature": "ack_count",
+      "world_model_mae": 0.0003243344835937023,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0004255873791407794
+    },
+    {
+      "feature": "fin_count",
+      "world_model_mae": 0.003051901701837778,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.004530911799520254
+    },
+    {
+      "feature": "rst_count",
+      "world_model_mae": 0.00760996900498867,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.008098787628114223
+    },
+    {
+      "feature": "psh_count",
+      "world_model_mae": 0.0012723163235932589,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0018632649444043636
+    },
+    {
+      "feature": "urg_count",
+      "world_model_mae": 0.0003016442933585495,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0004098197678104043
+    },
+    {
+      "feature": "fragment_count",
+      "world_model_mae": 0.00037586435792036355,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0004864622314926237
+    },
+    {
+      "feature": "retransmission_count",
+      "world_model_mae": 0.0003270922461524606,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.00045769763528369367
+    },
+    {
+      "feature": "avg_payload_size",
+      "world_model_mae": 0.0014770199777558446,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0018992251716554165
+    },
+    {
+      "feature": "payload_variance",
+      "world_model_mae": 0.0003283341648057103,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0004582371620927006
+    },
+    {
+      "feature": "max_payload_size",
+      "world_model_mae": 0.00047770541277714074,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.0006323492270894349
+    },
+    {
+      "feature": "avg_iat",
+      "world_model_mae": 2.681936264038086,
+      "persistence_mae": 2.7350199222564697,
+      "gain_percent": 1.9408874424062055,
+      "prediction_std": 97.78131866455078
+    },
+    {
+      "feature": "iat_variance",
+      "world_model_mae": 6016.24072265625,
+      "persistence_mae": 6113.5009765625,
+      "gain_percent": 1.590909272430304,
+      "prediction_std": 315107.0
+    },
+    {
+      "feature": "avg_src_iat",
+      "world_model_mae": 0.07276753336191177,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.11723264306783676
+    },
+    {
+      "feature": "src_iat_variance",
+      "world_model_mae": 0.25244906544685364,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.6995214223861694
+    },
+    {
+      "feature": "avg_bytes_per_packet",
+      "world_model_mae": 17.730133056640625,
+      "persistence_mae": 20.329240798950195,
+      "gain_percent": 12.78507037234656,
+      "prediction_std": 19.563886642456055
+    },
+    {
+      "feature": "avg_packets_per_second",
+      "world_model_mae": 26626.310546875,
+      "persistence_mae": 34070.953125,
+      "gain_percent": 21.850408912283694,
+      "prediction_std": 20801.115234375
+    },
+    {
+      "feature": "avg_bytes_per_second",
+      "world_model_mae": 218680.734375,
+      "persistence_mae": 289730.46875,
+      "gain_percent": 24.522700246727158,
+      "prediction_std": 256026.953125
+    },
+    {
+      "feature": "avg_unique_dst_ports",
+      "world_model_mae": 0.011485219933092594,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.016005156561732292
+    },
+    {
+      "feature": "avg_unique_dst_hosts",
+      "world_model_mae": 0.034517038613557816,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.04890904948115349
+    },
+    {
+      "feature": "port_scan_count",
+      "world_model_mae": 0.04642409831285477,
+      "persistence_mae": 0.0,
+      "gain_percent": 0.0,
+      "prediction_std": 0.06652888655662537
+    }
+  ],
+  "verdict": {
+    "beats_persistence_mae": true
+  }
+}

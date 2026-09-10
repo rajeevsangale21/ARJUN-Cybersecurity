@@ -1,0 +1,223 @@
+{
+  "experiment": "optimized_isolation_forest_anomaly_detection",
+  "model": "IsolationForest",
+  "state_dimension": 33,
+  "feature_names": [
+    "flow_count",
+    "unique_src_ips",
+    "unique_dst_ips",
+    "unique_dst_ports",
+    "total_bytes",
+    "total_packets",
+    "avg_duration",
+    "avg_packet_length",
+    "avg_ttl",
+    "ttl_variance",
+    "avg_tcp_window",
+    "tcp_window_variance",
+    "syn_count",
+    "ack_count",
+    "fin_count",
+    "rst_count",
+    "psh_count",
+    "urg_count",
+    "fragment_count",
+    "retransmission_count",
+    "avg_payload_size",
+    "payload_variance",
+    "max_payload_size",
+    "avg_iat",
+    "iat_variance",
+    "avg_src_iat",
+    "src_iat_variance",
+    "avg_bytes_per_packet",
+    "avg_packets_per_second",
+    "avg_bytes_per_second",
+    "avg_unique_dst_ports",
+    "avg_unique_dst_hosts",
+    "port_scan_count"
+  ],
+  "random_state": 42,
+  "n_estimators": 500,
+  "max_samples": 4096,
+  "max_features": 1.0,
+  "contamination": "auto",
+  "preprocessing": [
+    "signed_log1p",
+    "robust_clip_z_8",
+    "RobustScaler"
+  ],
+  "threshold_percentile": 99.0,
+  "threshold": 0.0681234821677208,
+  "training_policy": "fit_only_on_benign_states",
+  "threshold_policy": "configured_benign_calibration_percentile",
+  "chronological_split": 0.8,
+  "benign_fit_fraction": 0.8,
+  "total_states": 56700,
+  "train_states": 45360,
+  "test_states": 11340,
+  "benign_fit_states": 26153,
+  "benign_calibration_states": 6539,
+  "test_benign_states": 4854,
+  "test_attack_states": 6486,
+  "metrics": {
+    "threshold": 0.0681234821677208,
+    "precision": 0.18994413407821228,
+    "recall": 0.005242059821153253,
+    "f1": 0.010202550637659414,
+    "fpr": 0.029872270292542233,
+    "true_negative": 4709,
+    "false_positive": 145,
+    "false_negative": 6452,
+    "true_positive": 34,
+    "predicted_anomaly_count": 179,
+    "anomaly_rate": 0.015784832451499118,
+    "roc_auc": 0.2830482497181658,
+    "average_precision": 0.4388195262420518
+  },
+  "threshold_tradeoff": [
+    {
+      "threshold": -0.05930076912045479,
+      "precision": 0.30792917628945343,
+      "recall": 0.12334258402713537,
+      "f1": 0.17613386173491855,
+      "fpr": 0.37041615162752367,
+      "true_negative": 3056,
+      "false_positive": 1798,
+      "false_negative": 5686,
+      "true_positive": 800,
+      "predicted_anomaly_count": 2598,
+      "anomaly_rate": 0.2291005291005291,
+      "calibration_percentile": 90.0
+    },
+    {
+      "threshold": -0.022282781079411507,
+      "precision": 0.2687838884585593,
+      "recall": 0.05349984582176997,
+      "f1": 0.08923749517808924,
+      "fpr": 0.19447878038730942,
+      "true_negative": 3910,
+      "false_positive": 944,
+      "false_negative": 6139,
+      "true_positive": 347,
+      "predicted_anomaly_count": 1291,
+      "anomaly_rate": 0.11384479717813051,
+      "calibration_percentile": 95.0
+    },
+    {
+      "threshold": 0.018100526183843613,
+      "precision": 0.18410852713178294,
+      "recall": 0.014646931853222325,
+      "f1": 0.027135104255926877,
+      "fpr": 0.08673259167696745,
+      "true_negative": 4433,
+      "false_positive": 421,
+      "false_negative": 6391,
+      "true_positive": 95,
+      "predicted_anomaly_count": 516,
+      "anomaly_rate": 0.0455026455026455,
+      "calibration_percentile": 97.5
+    },
+    {
+      "threshold": 0.0681234821677208,
+      "precision": 0.18994413407821228,
+      "recall": 0.005242059821153253,
+      "f1": 0.010202550637659414,
+      "fpr": 0.029872270292542233,
+      "true_negative": 4709,
+      "false_positive": 145,
+      "false_negative": 6452,
+      "true_positive": 34,
+      "predicted_anomaly_count": 179,
+      "anomaly_rate": 0.015784832451499118,
+      "calibration_percentile": 99.0
+    },
+    {
+      "threshold": 0.10020305961370468,
+      "precision": 0.2857142857142857,
+      "recall": 0.002466851680542707,
+      "f1": 0.004891470498318557,
+      "fpr": 0.008240626287597858,
+      "true_negative": 4814,
+      "false_positive": 40,
+      "false_negative": 6470,
+      "true_positive": 16,
+      "predicted_anomaly_count": 56,
+      "anomaly_rate": 0.0049382716049382715,
+      "calibration_percentile": 99.5
+    },
+    {
+      "threshold": 0.12561973929405212,
+      "precision": 0.5882352941176471,
+      "recall": 0.001541782300339192,
+      "f1": 0.003075503613716746,
+      "fpr": 0.001442109600329625,
+      "true_negative": 4847,
+      "false_positive": 7,
+      "false_negative": 6476,
+      "true_positive": 10,
+      "predicted_anomaly_count": 17,
+      "anomaly_rate": 0.0014991181657848325,
+      "calibration_percentile": 99.9
+    }
+  ],
+  "calibration_score_percentiles": {
+    "90": -0.05930076912045479,
+    "95": -0.022282781079411507,
+    "97.5": 0.018100526183843613,
+    "99": 0.0681234821677208,
+    "99.5": 0.10020305961370468,
+    "99.9": 0.12561973929405212
+  },
+  "test_score_summary": {
+    "min": -0.15102604031562805,
+    "max": 0.1672840118408203,
+    "mean": -0.09054488688707352,
+    "median": -0.10843519866466522,
+    "benign_mean": -0.06879183650016785,
+    "attack_mean": -0.10682445019483566
+  },
+  "top_feature_magnitude_proxies": [
+    {
+      "feature": "avg_packet_length",
+      "transformed_standardized_magnitude": 1.1173728704452515
+    },
+    {
+      "feature": "avg_iat",
+      "transformed_standardized_magnitude": 1.1075228452682495
+    },
+    {
+      "feature": "avg_bytes_per_packet",
+      "transformed_standardized_magnitude": 1.0612046718597412
+    },
+    {
+      "feature": "iat_variance",
+      "transformed_standardized_magnitude": 1.0409002304077148
+    },
+    {
+      "feature": "avg_duration",
+      "transformed_standardized_magnitude": 0.9515198469161987
+    },
+    {
+      "feature": "avg_tcp_window",
+      "transformed_standardized_magnitude": 0.807269811630249
+    },
+    {
+      "feature": "tcp_window_variance",
+      "transformed_standardized_magnitude": 0.7869479060173035
+    },
+    {
+      "feature": "avg_packets_per_second",
+      "transformed_standardized_magnitude": 0.7544899582862854
+    },
+    {
+      "feature": "avg_bytes_per_second",
+      "transformed_standardized_magnitude": 0.7394270896911621
+    },
+    {
+      "feature": "flow_count",
+      "transformed_standardized_magnitude": 0.5135558843612671
+    }
+  ],
+  "interpretation": "Isolation Forest remains unsupervised. The preprocessing compresses heavy-tailed network features before robust scaling. Attack labels are used only for final evaluation and are never passed to model.fit(). The anomaly score is not an attack probability."
+}
