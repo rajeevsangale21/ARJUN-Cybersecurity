@@ -10,6 +10,14 @@ except Exception:
     joblib = None
 from datetime import datetime
 from pathlib import Path
+import sys
+
+# Ensure sibling ARJUN packages are importable when Streamlit Cloud
+# executes this file from the frontend directory.
+FILE_DIR = Path(__file__).resolve().parent
+REPO_ROOT = FILE_DIR.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 import numpy as np
 import pandas as pd
@@ -909,8 +917,20 @@ def _score_ingested_state(state):
     normalizer = artifact.get("normalizer") if isinstance(artifact, dict) else None
     threshold_local = float(artifact.get("threshold", 0.55)) if isinstance(artifact, dict) else 0.55
     x = state.reshape(1, -1)
+    if x.shape[1] != 33:
+        raise RuntimeError(f"Uploaded telemetry produced {x.shape[1]} features; the current XGBoost artifact expects 33.")
+
     if normalizer is not None:
-        x = normalizer.transform(x)
+        if hasattr(normalizer, "transform"):
+            x = np.asarray(normalizer.transform(x), dtype=np.float32)
+        elif hasattr(normalizer, "scaler") and hasattr(normalizer.scaler, "transform"):
+            x = np.asarray(normalizer.scaler.transform(x), dtype=np.float32)
+        else:
+            raise RuntimeError("The XGBoost normalizer does not expose a usable 33-feature transform.")
+
+    if x.shape[1] != 33:
+        raise RuntimeError(f"XGBoost input has {x.shape[1]} features after normalization; expected 33.")
+
     if hasattr(model, "predict_proba"):
         prob = float(np.asarray(model.predict_proba(x)).reshape(-1)[-1])
     else:
@@ -1313,7 +1333,7 @@ with nav_whatif:
         history, graph_history, wf_model, wf_scaler, wf_xgb, wf_normalizer = _load_live_what_if_context()
         names = _feature_names()
         if isinstance(wf_xgb, dict) and isinstance(wf_xgb.get("feature_names"), (list, tuple)):
-            # The improved classifier uses 66 features (33 latest + 33 delta).
+            # The current improved production classifier uses a 33-feature raw network state.
             # Keep the first 33 names for the raw network state.
             artifact_names = list(wf_xgb["feature_names"])
             if len(artifact_names) >= 33:
