@@ -1,0 +1,118 @@
+[
+  {
+    "alert_id": "ARJUN-PREDICTED-28A65943",
+    "timestamp": "2026-09-06T17:45:09.339637+00:00",
+    "status": "PREDICTED",
+    "severity": "MEDIUM",
+    "attack_probability": 0.5215588808059692,
+    "risk_score": 0.5483092665672302,
+    "forecast_step": 4,
+    "mitre_stage": "Command & Control",
+    "indicators": [
+      {
+        "source": "Zeek conn.log",
+        "artifact": "zeek_forecast_risk.npz",
+        "type": "world_model_forecast"
+      }
+    ],
+    "recommendation": "Review network activity related to the predicted Command & Control stage and validate against additional security evidence.",
+    "acknowledged": false,
+    "email_sent": true
+  },
+  {
+    "alert_id": "ARJUN-PREDICTED-539D299D",
+    "timestamp": "2026-09-07T03:28:16.221342+00:00",
+    "status": "PREDICTED",
+    "severity": "MEDIUM",
+    "attack_probability": 0.5205253958702087,
+    "risk_score": 0.5636798739433289,
+    "forecast_step": 1,
+    "mitre_stage": "Command & Control",
+    "indicators": [
+      "Source: live Zeek conn.log",
+      "ARJUN: 5-second network state windows",
+      "ARJUN: trained Hybrid World Model recursive forecast"
+    ],
+    "recommendation": "Review network activity related to the predicted Command & Control stage and validate against additional security evidence.",
+    "acknowledged": false,
+    "email_sent": false
+  },
+  {
+    "alert_id": "ARJUN-PREDICTED-230110",
+    "timestamp": "2026-09-10T23:01:10.668578",
+    "severity": "GUARDED",
+    "status": "PREDICTED",
+    "acknowledged": false,
+    "attack_probability": 0.016667556017637253,
+    "risk_score": 0.30308228223770856,
+    "forecast_step": 1,
+    "mitre_stage": "Lateral Movement",
+    "indicators": [
+      {
+        "name": "Forecasted attack probability",
+        "value": "1.67%"
+      },
+      {
+        "name": "Forecast risk score",
+        "value": "30.31%"
+      },
+      {
+        "name": "Trigger",
+        "value": "ARJUN World Model forecast"
+      }
+    ],
+    "recommendation": "Investigate the predicted MITRE stage and correlate with current Zeek telemetry."
+  },
+  {
+    "alert_id": "ARJUN-PREDICTED-230916",
+    "timestamp": "2026-09-10T23:09:16.250992",
+    "severity": "GUARDED",
+    "status": "PREDICTED",
+    "acknowledged": false,
+    "attack_probability": 0.016667556017637253,
+    "risk_score": 0.30308228223770856,
+    "forecast_step": 1,
+    "mitre_stage": "Lateral Movement",
+    "indicators": [
+      {
+        "name": "Forecasted attack probability",
+        "value": "1.67%"
+      },
+      {
+        "name": "Forecast risk score",
+        "value": "30.31%"
+      },
+      {
+        "name": "Trigger",
+        "value": "ARJUN World Model forecast"
+      }
+    ],
+    "recommendation": "Investigate the predicted MITRE stage and correlate with current Zeek telemetry."
+  },
+  {
+    "alert_id": "ARJUN-PREDICTED-230922",
+    "timestamp": "2026-09-10T23:09:22.683627",
+    "severity": "GUARDED",
+    "status": "PREDICTED",
+    "acknowledged": false,
+    "attack_probability": 0.016667556017637253,
+    "risk_score": 0.30308228223770856,
+    "forecast_step": 1,
+    "mitre_stage": "Lateral Movement",
+    "indicators": [
+      {
+        "name": "Forecasted attack probability",
+        "value": "1.67%"
+      },
+      {
+        "name": "Forecast risk score",
+        "value": "30.31%"
+      },
+      {
+        "name": "Trigger",
+        "value": "ARJUN World Model forecast"
+      }
+    ],
+    "recommendation": "Investigate the predicted MITRE stage and correlate with current Zeek telemetry."
+  }
+]
